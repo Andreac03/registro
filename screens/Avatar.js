@@ -34,7 +34,7 @@ function Avatar() {
                                 :
                                 <Text
                                     style={style.TextoAI}
-                                >AI
+                                >AI....
                                 </Text>
                             }
                         </View>
