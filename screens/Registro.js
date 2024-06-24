@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, TextInput, SafeAreaView, FlatList 
 import { useNavigation } from '@react-navigation/native';
 import Axios from 'axios';
 
-//___________________________Funsion de Ventana_______________________
+//__________Funsion de Ventana________
 const Registro = ({}) =>    {
     const navigation = useNavigation();
     const[username,setUsername]= useState("");
@@ -13,25 +13,26 @@ const Registro = ({}) =>    {
     const [registroList,setRegistro] =useState ([]);
 
     const mostrarDatos = () => {
-        Axios.post("http://192.168.137.206:8082/create", {
+        Axios.post("http://192.168.10.15:8080/register", {
             username: username,
             password: password,
             gmail: gmail,
         }).then(() => {
             alert("Usuario registrado");
-            registro();
+           
         }).catch(error => {
             console.error(error);
-            alert("Error al registrar el usuario");
+            console.error("Error al registrar el usuario",error);
+            alert("Error al registrar el usuario"+ error.message);
         });
     };
 
     
-    const registro=()=>{
-        Axios.get("http://192.168.137.206:8082/registro").then((response)=>{
-        setRegistro(response.data);
-        });
-    }
+    // const registro=()=>{
+    //     Axios.post("http://192.168.10.15:8080/registro").then((response)=>{
+    //     setRegistro(response.data);
+    //     });
+    // }
 
     return (
         <SafeAreaView
@@ -39,21 +40,12 @@ const Registro = ({}) =>    {
                 width:"auto",
                 height:"auto",
                 flex:0,
-                //backgroundColor:"blue"
             }}
         >
             <View style={{
                 height:"auto",
                 width:"auto",
             }}>
-            {/* <Text
-                style={{
-                    fontSize:30,
-                    textAlign: "center",
-                    marginTop:"0%"
-                }}
-                >Inicio Seccion
-            </Text> */}
             <View style={{height:"auto", bottom:2}}>
                 <Image 
                     source={require('../image/ImagenInicio.png')}
@@ -66,7 +58,6 @@ const Registro = ({}) =>    {
                 />
                 <View style={{width: "70%",
                             height: "95%",
-                            //backgroundColor:"green",
                             alignSelf:"center",
                             top:"10%"
                         }}>
@@ -83,14 +74,12 @@ const Registro = ({}) =>    {
                     <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:70}}>
                         <View 
                             style={{
-                                //backgroundColor: "#00d9dd",
                                 width:30,
                                 height:30,
                                 position:"absolute",
                                 top:1,
                                 borderRadius:50,
                                 alignSelf:"center",
-                                //justifyContent:"center",
                                 margin:0,
                             }}
                         >
@@ -111,7 +100,6 @@ const Registro = ({}) =>    {
                                 width: '20%',
                                 height: 18,
                                 backgroundColor: '#fff',
-                                //marginBottom: 50,
                                 paddingHorizontal: 3,
                                 top:1,
                                 borderRadius: 10,
@@ -123,14 +111,12 @@ const Registro = ({}) =>    {
                     <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:20}}>
                         <View 
                             style={{
-                                //backgroundColor: "#00d9dd",
                                 width:30,
                                 height:30,
                                 position:"absolute",
                                 top:1,
                                 borderRadius:50,
                                 alignSelf:"center",
-                                //justifyContent:"center",
                                 margin:0,
 
                             }}
@@ -152,7 +138,6 @@ const Registro = ({}) =>    {
                                 width: '20%',
                                 height: 18,
                                 backgroundColor: '#fff',
-                                //marginBottom: 50,
                                 paddingHorizontal: 2,
                                 top:1,
                                 borderRadius: 10,
@@ -165,14 +150,12 @@ const Registro = ({}) =>    {
                     <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:20}}>
                         <View 
                             style={{
-                                //backgroundColor: "#00d9dd",
                                 width:30,
                                 height:30,
                                 position:"absolute",
                                 top:1,
                                 borderRadius:50,
                                 alignSelf:"center",
-                                //justifyContent:"center",
                                 margin:0,
 
                             }}
@@ -194,7 +177,6 @@ const Registro = ({}) =>    {
                                 width: '20%',
                                 height: 18,
                                 backgroundColor: '#fff',
-                                //marginBottom: 50,
                                 paddingHorizontal: 2,
                                 top:1,
                                 borderRadius: 10,
@@ -265,7 +247,7 @@ const Registro = ({}) =>    {
                                     fontWeight: "bold"
                                 }}
                             >
-                                Ver Usuarios
+                            
                             </Text>
                         </TouchableOpacity>
                         <FlatList
@@ -286,224 +268,3 @@ const Registro = ({}) =>    {
 };
 
 export default Registro;
-
-// <SafeAreaView
-        //     style={{
-        //         width:"auto",
-        //         height:"auto",
-        //     }}
-        // >
-        //     <View style={{
-        //         height:"auto",
-        //         width:"auto",
-        //     }}>
-        //     {/* <Text
-        //         style={{
-        //             fontSize:30,
-        //             textAlign: "center",
-        //             marginTop:"0%"
-        //         }}
-        //         >Inicio Seccion
-        //     </Text> */}
-        //     <View style={{height:"auto", bottom:2}}>
-        //         <Image 
-        //             source={require('../image/ImagenInicio.png')}
-        //             style={{
-        //                 position: 'absolute',
-        //                 width: "100%",
-        //                 height: 393,
-        //                 alignSelf:"center",
-        //             }}
-        //         />
-        //         <View style={{width: "70%",
-        //                     height: "95%",
-        //                     //backgroundColor:"green",
-        //                     alignSelf:"center",
-        //                     top:"10%"
-        //                 }}>
-        //             <Image
-        //                 source={require('../image/pua.png')}
-        //                 style={{
-        //                     position: 'absolute',
-        //                     width: "52%",
-        //                     height: "94%",
-        //                     top:"5%",
-        //                     alignSelf:"center"
-        //                 }}
-        //             />
-        //             <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:70}}>
-        //                 <View 
-        //                     style={{
-        //                         //backgroundColor: "#00d9dd",
-        //                         width:30,
-        //                         height:30,
-        //                         position:"absolute",
-        //                         top:1,
-        //                         borderRadius:50,
-        //                         alignSelf:"center",
-        //                         //justifyContent:"center",
-        //                         margin:0,
-        //                     }}
-        //                 >
-        //                 </View>
-        //                 <Image
-        //                     source={require('../image/ClaveSol.png')}
-        //                     style={{
-        //                         width:16,
-        //                         height:35,
-        //                         alignSelf:"center",
-        //                         marginRight:20,
-        //                         top:1,
-        //                         left:8
-        //                     }}
-        //                 />
-        //                 <TextInput
-        //                     style={{
-        //                         width: '15%',
-        //                         height: 18,
-        //                         backgroundColor: '#fff',
-        //                         //marginBottom: 50,
-        //                         paddingHorizontal: 10,
-        //                         top:1,
-        //                         borderRadius: 10,
-        //                     }}
-        //                     placeholder="Usuario"
-        //                 />
-        //             </View>
-        //             <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:20}}>
-        //                 <View 
-        //                     style={{
-        //                         //backgroundColor: "#00d9dd",
-        //                         width:30,
-        //                         height:30,
-        //                         position:"absolute",
-        //                         top:1,
-        //                         borderRadius:50,
-        //                         alignSelf:"center",
-        //                         //justifyContent:"center",
-        //                         margin:0,
-
-        //                     }}
-        //                 >
-        //                 </View>
-        //                 <Image
-        //                     source={require('../image/ClaveSol.png')}
-        //                     style={{
-        //                         width:16,
-        //                         height:35,
-        //                         alignSelf:"center",
-        //                         marginRight:20,
-        //                         top:1,
-        //                         left:8
-        //                     }}
-        //                 />
-        //                 <TextInput
-        //                     style={{
-        //                         width: '15%',
-        //                         height: 18,
-        //                         backgroundColor: '#fff',
-        //                         //marginBottom: 50,
-        //                         paddingHorizontal: 10,
-        //                         top:1,
-        //                         borderRadius: 10,
-        //                     }}
-        //                     placeholder="Contraseña"
-        //                 />
-        //             </View>
-        //             <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"center", marginTop:20}}>
-        //                 <View 
-        //                     style={{
-        //                         //backgroundColor: "#00d9dd",
-        //                         width:30,
-        //                         height:30,
-        //                         position:"absolute",
-        //                         top:1,
-        //                         borderRadius:50,
-        //                         alignSelf:"center",
-        //                         //justifyContent:"center",
-        //                         margin:0,
-
-        //                     }}
-        //                 >
-        //                 </View>
-        //                 <Image
-        //                     source={require('../image/ClaveSol.png')}
-        //                     style={{
-        //                         width:16,
-        //                         height:35,
-        //                         alignSelf:"center",
-        //                         marginRight:20,
-        //                         top:1,
-        //                         left:8
-        //                     }}
-        //                 />
-        //                 <TextInput
-        //                     style={{
-        //                         width: '15%',
-        //                         height: 18,
-        //                         backgroundColor: '#fff',
-        //                         //marginBottom: 50,
-        //                         paddingHorizontal: 10,
-        //                         top:1,
-        //                         borderRadius: 10,
-        //                     }}
-        //                     placeholder="Gmail"
-        //                 />
-        //             </View>
-        //             <TouchableOpacity
-        //                 onPress={() => navigation.navigate("Inicio")}
-        //                 style={{
-        //                     //backgroundColor: "#00d9dd",
-        //                     marginTop: 1,
-        //                     width: 20,
-        //                     height:20,
-        //                     padding: 0,
-        //                     alignSelf: "center",
-        //                     borderRadius: 10,
-        //                     marginLeft:10,
-        //                     top:1
-        //                 }}
-        //             >
-        //                 <Image
-        //                     source={require('../image/Corchea.png')}
-        //                     style={{
-        //                         width:15,
-        //                         height:25,
-        //                         alignSelf:"center",
-        //                         margin:1,
-        //                         top:1
-        //                         }}
-        //                     />
-        //             </TouchableOpacity>                   
-        //         </View>
-        //     </View>
-        //     <View style={{flexDirection:"row", paddingBottom:2, alignSelf:"flex-end", top:"7%"}}>
-        //         <TouchableOpacity
-        //             onPress={() => navigation.navigate("InicioSeccion")}
-        //             style={{
-        //                 //backgroundColor:"green",
-        //                 marginTop: 1,
-        //                 width: 40,
-        //                 height:40,
-        //                 padding: 1,
-        //                 alignSelf: "flex-end",
-        //                 borderRadius: 50,
-        //                 top:1,
-        //                 right:5,
-        //                 margin:1,
-        //                 marginBottom:5
-        //             }}
-        //         >
-        //             <Image
-        //                 source={require('../image/Refresh.png')}
-        //                 style={{
-        //                     width:26,
-        //                     height:29,
-        //                     alignSelf:"center",
-        //                     top:1,
-        //                 }}
-        //             />
-        //         </TouchableOpacity>
-        //     </View>
-        //     </View>
-        // </SafeAreaView>

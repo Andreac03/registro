@@ -1,0 +1,7 @@
+.saludo {
+    font-size: 50px;
+    color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
